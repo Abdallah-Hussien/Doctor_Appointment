@@ -13,7 +13,7 @@ class DocImageAndText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        SvgPicture.asset('assetName'),
+        SvgPicture.asset('assets/svgs/docdoc_logo_low_opacity.svg'),
         Container(
           foregroundDecoration: BoxDecoration(
             gradient: LinearGradient(
