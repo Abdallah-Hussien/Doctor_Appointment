@@ -1,5 +1,5 @@
 import 'package:doc_app/core/routing/routes.dart';
-import 'package:doc_app/features/auth/login/login_Screen.dart';
+import 'package:doc_app/features/auth/login/ui/login_Screen.dart';
 import 'package:doc_app/features/onboarding/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 
