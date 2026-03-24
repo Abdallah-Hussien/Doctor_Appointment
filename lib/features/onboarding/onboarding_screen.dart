@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last
 
+import 'package:doc_app/core/helper/extension.dart';
 import 'package:doc_app/core/helper/spacing.dart';
+import 'package:doc_app/core/routing/routes.dart';
 import 'package:doc_app/core/theme/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -37,7 +39,9 @@ class OnboardingScreen extends StatelessWidget {
                     AppTextButton(
                       buttonText: 'Start',
                       textStyle: TextStyles.font16WhiteSemiBold,
-                      onPressed: () {},
+                      onPressed: () {
+                        context.pushReplacementNamed(Routes.loginScreen);
+                      },
                     )
                   ],
                 ),
