@@ -52,7 +52,8 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return "Fill Email Field";
-              } else if (ValidationUtil.isValidUserEmail(value)) {
+              }
+              if (!ValidationUtil.isValidUserEmail(value)) {
                 return "Enter a valid Email";
               }
               // return null;
@@ -77,6 +78,9 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return "Fill Password Field";
+              }
+              if (!ValidationUtil.hasMinLength(value)) {
+                return "Enter a valid password";
               }
               // return null;
             },

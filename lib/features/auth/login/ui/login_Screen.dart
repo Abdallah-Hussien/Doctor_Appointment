@@ -1,11 +1,14 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:doc_app/features/auth/login/logic/cubit/login_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/helper/spacing.dart';
 import '../../../../core/theme/styles.dart';
 import '../../../../core/widgets/app_text_button.dart';
 import 'widgets/email_and_password.dart';
+import 'widgets/login_bloc_listener.dart';
 import 'widgets/widgets.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -54,12 +57,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     buttonText: "Login",
                     textStyle: TextStyles.font16WhiteSemiBold,
                     onPressed: () {
+                      validateThenDoLogin(context);
                     },
                   ),
                   verticalSpace(16),
                   const TermsAndConditionsText(),
                   verticalSpace(60),
                   const DontHaveAccountText(),
+                  LoginBlocListener()
                 ],
               ),
             ],
@@ -67,5 +72,11 @@ class _LoginScreenState extends State<LoginScreen> {
         )),
       ),
     );
+  }
+
+  void validateThenDoLogin(BuildContext context) {
+    if (context.read<LoginCubit>().formKey.currentState!.validate()) {
+      context.read<LoginCubit>().emitLoginStates();
+    }
   }
 }
