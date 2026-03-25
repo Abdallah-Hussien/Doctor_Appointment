@@ -1,19 +1,19 @@
 import 'package:doc_app/core/helper/extension.dart';
 import 'package:doc_app/features/auth/login/data/model/login_response.dart';
+import 'package:doc_app/features/auth/register/logic/cubit/register_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/theme/colors.dart';
 import '../../../../../core/theme/styles.dart';
-import '../../logic/cubit/login_cubit.dart';
 
-class LoginBlocListener extends StatelessWidget {
-  const LoginBlocListener({super.key});
+class RegisterBlocListener extends StatelessWidget {
+  const RegisterBlocListener({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<LoginCubit, LoginState>(
+    return BlocListener<RegisterCubit, RegisterState>(
       listenWhen: (previous, current) =>
           current is Loading || current is Success || current is Error,
       listener: (context, state) {
@@ -30,9 +30,10 @@ class LoginBlocListener extends StatelessWidget {
             );
           },
           success: (loginResponse) {
-            context.pop();
             var data = loginResponse as LoginResponse;
+            context.pop();
             if (data.code == 200) {
+              // setupErrorState(context, data.userData?.userName ?? "Errorrrrr");
               showSuccessDialog(context);
             } else {
               setupErrorState(
@@ -51,14 +52,15 @@ class LoginBlocListener extends StatelessWidget {
 
   void showSuccessDialog(BuildContext context) {
     showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Login Successful'),
+          title: const Text('Signup Successful'),
           content: const SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Text('Congratulations, you have Logged in successfully!'),
+                Text('Congratulations, you have signed up successfully!'),
               ],
             ),
           ),
@@ -82,6 +84,7 @@ class LoginBlocListener extends StatelessWidget {
 
   void setupErrorState(BuildContext context, String error) {
     showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (context) => AlertDialog(
         icon: const Icon(
