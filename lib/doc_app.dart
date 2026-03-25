@@ -22,7 +22,7 @@ class DocApp extends StatelessWidget {
         ),
         debugShowCheckedModeBanner: false,
         title: 'Doctor Appointment',
-        initialRoute: Routes.onBoardingScreen,
+        initialRoute: Routes.homeScreen,
         onGenerateRoute: appRouter.generateRoute,
       ),
     );

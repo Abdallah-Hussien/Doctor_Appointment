@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:bloc/bloc.dart';
 import 'package:doc_app/features/auth/auth_repo.dart';
@@ -11,7 +10,7 @@ part 'register_cubit.freezed.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
   final AuthRepo _authRepo;
-  RegisterCubit(this._authRepo) : super(RegisterState.initial());
+  RegisterCubit(this._authRepo) : super(const RegisterState.initial());
 
   final formKey = GlobalKey<FormState>();
   TextEditingController nameController = TextEditingController();

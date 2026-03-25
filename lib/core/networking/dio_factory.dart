@@ -19,7 +19,12 @@ class DioFactory {
           requestBody: true,
           requestHeader: true,
           responseHeader: true,
-        ));
+        ))
+        ..options.headers = {
+          'Accept': 'application/json',
+          'Authorization':
+              'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3ZjYXJlLmludGVncmF0aW9uMjUuY29tL2FwaS9hdXRoL2xvZ2luIiwiaWF0IjoxNzc0NDc2MzM2LCJleHAiOjE3NzQ1NjI3MzYsIm5iZiI6MTc3NDQ3NjMzNiwianRpIjoibWVGRW5XRkp1SnU1NVdkViIsInN1YiI6IjY3MDYiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.5wZJlzF8mXr1VhgDv5ZtcJDNCdRIHJSni-KFKUoq1Uo',
+        };
       return dio!;
     } else {
       return dio!;
