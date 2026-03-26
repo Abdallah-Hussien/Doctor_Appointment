@@ -1,4 +1,7 @@
 import 'package:bloc/bloc.dart';
+import 'package:doc_app/core/helper/shared_constants.dart';
+import 'package:doc_app/core/helper/shared_pref_helper.dart';
+import 'package:doc_app/core/networking/dio_factory.dart';
 import 'package:doc_app/features/auth/auth_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -23,8 +26,8 @@ class LoginCubit extends Cubit<LoginState> {
       password: passwordController.text,
     ));
     result.when(
-      success: (loginResponse) {
-        // saveUserToken(loginResponse.userData!.token);
+      success: (loginResponse) async {
+        await saveUserToken(loginResponse.userData!.token ?? "");
         emit(LoginState.success(loginResponse));
       },
       failure: (e) {
@@ -35,6 +38,8 @@ class LoginCubit extends Cubit<LoginState> {
   }
 }
 
-// Future<void> saveUserToken(String? token) async{
-
-// }
+Future<void> saveUserToken(String token) async {
+  SharedPrefHelper.setSecuredString(
+      key: SharedConstants.userToken, value: token);
+  DioFactory.resetUserTokenAfterLogin(token);
+}

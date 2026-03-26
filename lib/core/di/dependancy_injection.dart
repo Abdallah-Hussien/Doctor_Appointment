@@ -10,7 +10,7 @@ import 'package:get_it/get_it.dart';
 final getIt = GetIt.instance;
 
 Future<void> setupGetIt() async {
-  final dio = DioFactory.getDio();
+  final dio = await DioFactory.getDio();
   getIt.registerLazySingleton<ApiService>(() => ApiService(dio));
   getIt.registerLazySingleton<AuthRepo>(() => AuthRepo(apiService: getIt()));
   getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt()));

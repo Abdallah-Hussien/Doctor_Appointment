@@ -9,7 +9,7 @@ part 'home_cubit.freezed.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   final HomeRepo _homeRepo;
-  HomeCubit(this._homeRepo) : super(HomeState.initial());
+  HomeCubit(this._homeRepo) : super(const HomeState.initial());
 
   emitHomeStates() async {
     emit(const HomeState.loading());

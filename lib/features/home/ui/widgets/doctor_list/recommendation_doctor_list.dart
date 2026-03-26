@@ -14,14 +14,15 @@ class RecommendationDoctorList extends StatelessWidget {
   final List<Doctor> doctorList;
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: doctorList.length,
-      itemBuilder: (context, index) {
-        return RecommendationDoctorListItem(
-          doctorModel: doctorList[index],
-        );
-      },
+    return Expanded(
+      child: ListView.builder(
+        itemCount: doctorList.length,
+        itemBuilder: (context, index) {
+          return RecommendationDoctorListItem(
+            doctorModel: doctorList[index],
+          );
+        },
+      ),
     );
   }
 }
@@ -79,7 +80,7 @@ class RecommendationDoctorListItem extends StatelessWidget {
                           text: " in ",
                           style: TextStyle(color: ColorsManager.mainBlue)),
                       TextSpan(
-                          text: doctorModel.specialization?.name ??
+                          text: doctorModel.specialization.name ??
                               'specialization'),
                     ],
                   ),

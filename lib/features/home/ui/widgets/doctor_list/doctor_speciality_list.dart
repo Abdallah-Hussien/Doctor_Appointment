@@ -18,7 +18,7 @@ class DoctorSpecialityList extends StatelessWidget {
     return SizedBox(
       height: 80.h,
       child: ListView.builder(
-        shrinkWrap: true,
+        // shrinkWrap: true,
         scrollDirection: Axis.horizontal,
         itemCount: specializationDataList.length,
         itemBuilder: (context, index) {

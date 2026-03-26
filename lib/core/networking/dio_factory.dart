@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:doc_app/core/helper/shared_constants.dart';
+import 'package:doc_app/core/helper/shared_pref_helper.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioFactory {
@@ -7,7 +9,7 @@ class DioFactory {
 
   static Dio? dio;
 
-  static Dio getDio() {
+  static Future<Dio> getDio() async {
     Duration timeOut = const Duration(seconds: 30);
 
     if (dio == null) {
@@ -22,13 +24,18 @@ class DioFactory {
         ))
         ..options.headers = {
           'Accept': 'application/json',
-          'Authorization':
-              'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3ZjYXJlLmludGVncmF0aW9uMjUuY29tL2FwaS9hdXRoL2xvZ2luIiwiaWF0IjoxNzc0NDc2MzM2LCJleHAiOjE3NzQ1NjI3MzYsIm5iZiI6MTc3NDQ3NjMzNiwianRpIjoibWVGRW5XRkp1SnU1NVdkViIsInN1YiI6IjY3MDYiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.5wZJlzF8mXr1VhgDv5ZtcJDNCdRIHJSni-KFKUoq1Uo',
+          'Authorization': 'Bearer ${await SharedPrefHelper.getSecuredString(
+            key: SharedConstants.userToken,
+          )}',
         };
       return dio!;
     } else {
       return dio!;
     }
+  }
+
+  static resetUserTokenAfterLogin(String userToken) {
+    dio?.options.headers = {'Authorization': 'Bearer $userToken'};
   }
 
   // static void addDioInterceptor() {
