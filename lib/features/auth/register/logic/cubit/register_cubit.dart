@@ -16,6 +16,7 @@ class RegisterCubit extends Cubit<RegisterState> {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController passwordConfirmController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
 
   Future<void> emitRegisterStates() async {
@@ -26,7 +27,7 @@ class RegisterCubit extends Cubit<RegisterState> {
         phone: phoneController.text,
         gender: '0',
         password: passwordController.text,
-        confirmPassword: passwordController.text));
+        confirmPassword: passwordConfirmController.text));
     result.when(
       success: (data) {
         emit(RegisterState.success(data));

@@ -129,7 +129,7 @@ class _EmailAndPasswordState extends State<RegisterForm> {
           ),
           verticalSpace(18),
           AppTextFormField(
-            controller: context.read<RegisterCubit>().passwordController,
+            controller: context.read<RegisterCubit>().passwordConfirmController,
             hintText: 'Confirm Password',
             isObscureText: isObscureText,
             suffixIcon: GestureDetector(
