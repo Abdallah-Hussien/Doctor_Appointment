@@ -22,6 +22,6 @@ abstract class ApiService {
     @Body() RegisterRequestBody registerRequestBody,
   );
 
-  @GET(ApiConstants.home)
+  @GET(ApiConstants.specialization)
   Future<HomeResponse> getSpecialitiesList();
 }

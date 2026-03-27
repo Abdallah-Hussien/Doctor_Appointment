@@ -105,7 +105,7 @@ class _ApiService implements ApiService {
     )
         .compose(
           _dio.options,
-          'home/index',
+          'specialization/index',
           queryParameters: queryParameters,
           data: _data,
         )

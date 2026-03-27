@@ -1,34 +1,14 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:doc_app/core/theme/colors.dart';
 import 'package:doc_app/features/home/data/models/home_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:shimmer/shimmer.dart';
 import '../../../../../core/helper/spacing.dart';
 import '../../../../../core/theme/styles.dart';
 
-class RecommendationDoctorList extends StatelessWidget {
-  const RecommendationDoctorList({
-    super.key,
-    required this.doctorList,
-  });
-  final List<Doctor> doctorList;
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        itemCount: doctorList.length,
-        itemBuilder: (context, index) {
-          return RecommendationDoctorListItem(
-            doctorModel: doctorList[index],
-          );
-        },
-      ),
-    );
-  }
-}
-
-class RecommendationDoctorListItem extends StatelessWidget {
-  const RecommendationDoctorListItem({
+class DoctorsListViewItem extends StatelessWidget {
+  const DoctorsListViewItem({
     super.key,
     required this.doctorModel,
   });
@@ -39,14 +19,36 @@ class RecommendationDoctorListItem extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 16.h),
       child: Row(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: Image.asset(
-              'assets/images/onboarding_doctor.png',
-              width: 110.w,
-              height: 110.h,
-              fit: BoxFit.contain,
-            ),
+          CachedNetworkImage(
+            imageUrl: 'https://www.shutterstock.com/image-vector/male-doctor-smiling-selfconfidence-flat-600nw-2281709217.jpg',
+            progressIndicatorBuilder: (context, url, progress) {
+              return Shimmer.fromColors(
+                baseColor: ColorsManager.lightGray,
+                highlightColor: Colors.white,
+                child: Container(
+                  width: 110.w,
+                  height: 110.h,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.circular(12),
+                      color: Colors.white),
+                ),
+              );
+            },
+            imageBuilder: (context, imageProvider) {
+              return Container(
+                width: 110.w,
+                height: 110.h,
+                decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.circular(12),
+                  image: DecorationImage(
+                    image: imageProvider,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              );
+            },
           ),
           horizontalSpace(16),
           Expanded(

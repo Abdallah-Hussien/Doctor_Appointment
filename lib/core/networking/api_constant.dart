@@ -3,7 +3,7 @@ class ApiConstants{
   static const String login ='auth/login';
   static const String register ='auth/register';
   // 2210
-  static const String home ='home/index';
+  static const String specialization ='specialization/index';
 }
 
 class ApiErrors {
