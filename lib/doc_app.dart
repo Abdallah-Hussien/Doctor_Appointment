@@ -3,6 +3,7 @@
 import 'package:doc_app/core/routing/router.dart';
 import 'package:doc_app/core/routing/routes.dart';
 import 'package:doc_app/core/theme/colors.dart';
+import 'package:doc_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -22,7 +23,7 @@ class DocApp extends StatelessWidget {
         ),
         debugShowCheckedModeBanner: false,
         title: 'Doctor Appointment',
-        initialRoute: Routes.onBoardingScreen,
+        initialRoute: isUerLoggedIn ? Routes.homeScreen : Routes.loginScreen,
         onGenerateRoute: appRouter.generateRoute,
       ),
     );

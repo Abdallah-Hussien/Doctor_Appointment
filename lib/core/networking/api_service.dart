@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:doc_app/core/networking/api_constant.dart';
 import 'package:doc_app/features/auth/login/data/model/login_request_body.dart';
 import 'package:doc_app/features/auth/login/data/model/login_response.dart';
+import 'package:doc_app/features/home/data/models/home_response.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../features/auth/register/data/register_request_body.dart';
@@ -20,5 +21,7 @@ abstract class ApiService {
   Future<LoginResponse> register(
     @Body() RegisterRequestBody registerRequestBody,
   );
-  
+
+  @GET(ApiConstants.specialization)
+  Future<HomeResponse> getSpecialitiesList();
 }

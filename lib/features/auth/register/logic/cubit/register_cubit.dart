@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:bloc/bloc.dart';
 import 'package:doc_app/features/auth/auth_repo.dart';
@@ -11,12 +10,13 @@ part 'register_cubit.freezed.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
   final AuthRepo _authRepo;
-  RegisterCubit(this._authRepo) : super(RegisterState.initial());
+  RegisterCubit(this._authRepo) : super(const RegisterState.initial());
 
   final formKey = GlobalKey<FormState>();
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController passwordConfirmController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
 
   Future<void> emitRegisterStates() async {
@@ -27,7 +27,7 @@ class RegisterCubit extends Cubit<RegisterState> {
         phone: phoneController.text,
         gender: '0',
         password: passwordController.text,
-        confirmPassword: passwordController.text));
+        confirmPassword: passwordConfirmController.text));
     result.when(
       success: (data) {
         emit(RegisterState.success(data));

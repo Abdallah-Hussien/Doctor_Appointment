@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:doc_app/features/auth/login/logic/cubit/login_cubit.dart';
 import 'package:doc_app/features/auth/register/logic/cubit/register_cubit.dart';
 import 'package:doc_app/features/auth/register/ui/widgets/already_have_account.dart';
 import 'package:doc_app/features/auth/register/ui/widgets/register_form.dart';
@@ -10,7 +9,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/helper/spacing.dart';
 import '../../../../core/theme/styles.dart';
 import '../../../../core/widgets/app_text_button.dart';
-import '../../login/ui/widgets/login_bloc_listener.dart';
 import '../../login/ui/widgets/widgets.dart';
 import 'widgets/register_bloc_listener.dart';
 
